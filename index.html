@@ -164,6 +164,9 @@
             item.style.background = "url('" + response['url'] + "')";
         })
 
+        if (window.innerWidth <= 1000) {
+            document.querySelector('body').style.overflow = 'hidden';
+        }
         const logo = document.querySelector('#logo');
         logo.classList.add('intro-scene');
         setTimeout(() => {
@@ -178,6 +181,7 @@
                             document.querySelector('#intro').classList.add('no-display');
                             setTimeout(() => {
                                 logo.classList.add('intro-scene-done');
+                                document.querySelector('body').style.overflow = 'unset';
                                 document.querySelector('#intro-options').classList.remove('hidden');
                                 document.querySelector('#logo').classList.add('reveal');
                             }, 500)
