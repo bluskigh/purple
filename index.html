@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purple</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <link rel="stylesheet" href="index-1000.css" media="all and (max-width: 1000px)">
+    <link rel="stylesheet" href="index-500.css" media="all and (max-width: 500px)">
+</head>
+<body>
+    <img src="monkey.svg" id="logo" alt="Logo Monkey Picture" width="30px" height="30px" loading="lazy">
+    <section id="intro">
+        <h1 class="hidden">Lorem Ipsum</h1>
+        <p class="hidden">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> 
+    </section>
+    <section id="intro-options" class="hidden">
+        <div class="container">
+            <div class="info-container">
+                <h2>Section Title</h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum eligendi ipsam consequatur, ipsum qui consequuntur nesciunt,</p> 
+            </div>
+        </div>
+        <div class="container scrollable">
+            <div class="scrollable-actions hidden">
+                <a href="#" class="downarrow">&ddarr;</a>
+                <a href="#" class="uparrow no-display">&uuarr;</a>
+            </div>
+            <div class="info-container">
+                <h2>Section Title</h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum eligendi ipsam consequatur, ipsum qui consequuntur nesciunt,</p> 
+            </div>
+            <div class="scrollable-container">
+                <div class="scrollable-info">
+                    <div class="scrollable-item image">
+                        <div class="scrollable-cover"></div>
+                        <strong>LOREM IPSUM</strong>
+                        <h3>LOREM IPSUM</h3>
+                    </div>
+                    <div class="scrollable-item image">
+                        <div class="scrollable-cover"></div>
+                        <strong>LOREM IPSUM</strong>
+                        <h3>LOREM IPSUM</h3>
+                    </div>
+                    <div class="scrollable-item image">
+                        <div class="scrollable-cover"></div>
+                        <strong>LOREM IPSUM</strong>
+                        <h3>LOREM IPSUM</h3>
+                    </div>
+                    <div class="scrollable-item image">
+                        <div class="scrollable-cover"></div>
+                        <strong>LOREM IPSUM</strong>
+                        <h3>LOREM IPSUM</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container scrollable">
+            <div class="scrollable-actions hidden">
+                <a href="#" class="downarrow">&ddarr;</a>
+                <a href="#" class="uparrow no-display">&uuarr;</a>
+            </div>
+            <div class="info-container">
+                <h2>Section Title</h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum eligendi ipsam consequatur, ipsum qui consequuntur nesciunt,</p> 
+            </div>
+            <div class="scrollable-container blog">
+                <div class="scrollable-info">
+                    <div class="scrollable-item">
+                        <strong>LOREM IPSUM</strong>
+                        <h3>LOREM IPSUM</h3>
+                    </div>
+                    <div class="scrollable-item">
+                        <strong>LOREM IPSUM</strong>
+                        <h3>LOREM IPSUM</h3>
+                    </div>
+                    <div class="scrollable-item">
+                        <strong>LOREM IPSUM</strong>
+                        <h3>LOREM IPSUM</h3>
+                    </div>
+                    <div class="scrollable-item">
+                        <strong>LOREM IPSUM</strong>
+                        <h3>LOREM IPSUM</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="info-container">
+                <h2>Section Title</h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum eligendi ipsam consequatur, ipsum qui consequuntur nesciunt,</p> 
+            </div>
+        </div>
+    </section>
+    <script>
+
+        const scrollables = document.querySelectorAll('.scrollable');
+        scrollables.forEach(item => {
+            const scrollable_actions = item.querySelector('.scrollable-actions');
+            const uparrow = item.querySelector('.uparrow');
+            const downarrow = item.querySelector('.downarrow');
+            uparrow.addEventListener('click', function() {
+                item.scrollTo(0, 0);
+            })
+            downarrow.addEventListener('click', function() {
+                item.scrollTo(0, 100000);
+            })
+
+            var scrollable_info = item.querySelector('.scrollable-info');
+            const scrollable_container = item.querySelector('.scrollable-container');
+            var scrollable_end_height = Math.floor(scrollable_info.clientHeight - ((scrollable_container.clientHeight * 15) / 100));
+            scrollable_end_height -= 1;
+            console.log('Scrollable end height: ', scrollable_end_height);
+
+            item.addEventListener('mouseenter', function() {
+                scrollable_actions.classList.remove('hidden');
+                item.querySelector('.scrollable-container .scrollable-info').style.top = "85%";
+            })
+            item.addEventListener('mouseleave', function() {
+                scrollable_actions.classList.add('hidden');
+                item.querySelector('.scrollable-container .scrollable-info').style.top = "90%";
+            })
+            item.addEventListener('scroll', function() {
+                if (item.scrollTop < scrollable_end_height && item.scrollTop > 10) {
+                    if (downarrow.classList.contains('no-display')) {
+                        downarrow.classList.remove('no-display');
+                    }
+                    if (uparrow.classList.contains('no-display')) {
+                        uparrow.classList.remove('no-display');
+                    }
+                }
+                if (item.scrollTop > 10) {
+                    if (uparrow.classList.contains('no-display')) {
+                        uparrow.classList.toggle('no-display');
+                    }
+                }
+                if (item.scrollTop < 10) {
+                    if (!uparrow.classList.contains('no-display')) {
+                        uparrow.classList.toggle('no-display');
+                    }
+                }
+                if (item.scrollTop > scrollable_end_height) {
+                    if (!downarrow.classList.contains('no-display')) {
+                        downarrow.classList.add('no-display');
+                    }
+                } 
+            })
+        })
+
+        const images = document.querySelectorAll('.image');
+        images.forEach(async item => {
+            const random_first = Math.floor(Math.random() * 1800) + 200;
+            const random_second = Math.floor(Math.random() * 1800) + 200;
+            var response = await fetch('https://source.unsplash.com/random/'+random_first+'x'+random_second);
+            item.style.background = "url('" + response['url'] + "')";
+        })
+
+        const logo = document.querySelector('#logo');
+        logo.classList.add('intro-scene');
+        setTimeout(() => {
+            document.querySelector('#intro h1').classList.remove('hidden');
+            setTimeout(() => {
+                document.querySelector('#intro p').classList.remove('hidden');
+                setTimeout(() => {
+                    setTimeout(() => {
+                        document.querySelector('#intro').classList.add('add-transition');
+                        document.querySelector('#intro').classList.add('hidden');
+                        setTimeout(() => {
+                            document.querySelector('#intro').classList.add('no-display');
+                            setTimeout(() => {
+                                logo.classList.add('intro-scene-done');
+                                document.querySelector('#intro-options').classList.remove('hidden');
+                                document.querySelector('#logo').classList.add('reveal');
+                            }, 500)
+                        }, 500)
+                    }, 1000)
+                }, 500)
+            }, 500)
+        }, 500)
+    </script>
+</body>
+</html>
